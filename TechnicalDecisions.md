@@ -33,11 +33,11 @@ The ommitempty declarative helped me create a new Account that would have those 
 to contain these fields.
 
 # Testing
-For testing, I decided to use a BDD dependency that allowed me to write feature files and link them to real code.
+For testing, I decided to use GoDog, a BDD dependency that allowed me to write feature files in Gherikin and link them to real code.
 In the tests I tried to cover any edge case I could by passing erroneous data where possible.
-The objective of these tests were not to test the underlying API, but the actual client, to test every possible path, including: making the http requests,
-marshalling and unmarshalling (of successful and error response), as well as error handling.
-I wanted to make sure that the errors returned by the API would not be swallowed up, but that they would make it all the way up to the errors returned by the 4 functions.
+The objective of these tests were not to test the underlying API, but the actual client, in order to test every possible path, (including: making the http requests,
+marshalling and unmarshalling (of successful and error response), as well as error handling).
+I wanted to make sure that the errors returned by the API would not be swallowed up, but that they would make it all the way up to the errors returned by the 4 operations.
 
 # API validation errors repetition
 I noticed that when sending invalid requests to the API, whenever a validation error message appeared, it returned something similar to this:
@@ -50,5 +50,4 @@ I noticed that for all validation errors, the sentence `validation failure list:
 to sanitise this string, and remove the repetition. This is found in the `accounts.go` file on the `cleanErrorMessage()` function.
 
 # Unmarshalling of Data and DataList
-I tried to merge the `handleResponseData()` and `handleResponseDataList()` functions in `marshal.go` to work with both Data and DataList struct unmarshalling. My intention was 
-to have the function return a dynamic type for code reusability. Unfortunately I was not able to find a simple way of solving this issue.
+I tried to merge the `handleResponseData()` and `handleResponseDataList()` functions in `marshal.go` to work with both Data and DataList struct unmarshalling. My intention was to have the function return a dynamic type for code reusability. Unfortunately I was not able to find a simple way of solving this issue.
